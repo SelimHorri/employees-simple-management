@@ -18,7 +18,7 @@ import com.selimhorri.pack.models.entities.Employee;
 import com.selimhorri.pack.services.EmployeeService;
 
 @RestController
-@RequestMapping(value = {"/app/employees"})
+@RequestMapping(value = {"/app/api/employees"})
 public class EmployeeRestController {
 	
 	private EmployeeService employeeService;
