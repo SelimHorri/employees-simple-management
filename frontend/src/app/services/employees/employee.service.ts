@@ -3,7 +3,6 @@ import { Employee } from './../../models/dto/employee';
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { env } from 'process';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ export class EmployeeService {
   }
   
   public findAll(): Observable<Employee[]> {
-    return this.http.get<Employee[]>("localhost:8080/app/api/employees");
+    return this.http.get<Employee[]>(this.apiServerUrl + "/employees");
   }
   
   public findById(employeeId: number): Observable<Employee> {
