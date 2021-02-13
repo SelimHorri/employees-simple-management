@@ -35,7 +35,7 @@ public class EmployeeRestController {
 		return new ResponseEntity<>(this.employeeService.findAll(), HttpStatus.OK);
 	}
 	
-	@GetMapping(value = {"/{employeeId}"})
+	@GetMapping(value = {"/{employeeId}", "/get/{employeeId}"})
 	public ResponseEntity<Employee> findById(@PathVariable("employeeId") final Integer employeeId) {
 		return new ResponseEntity<>(this.employeeService.findById(employeeId), HttpStatus.OK);
 	}
@@ -50,7 +50,7 @@ public class EmployeeRestController {
 		return new ResponseEntity<>(this.employeeService.update(employee), HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value = {"", "/", "/delete/{employeeId}"})
+	@DeleteMapping(value = {"/{employeeId}", "/delete/{employeeId}"})
 	public ResponseEntity<?> deleteById(@PathVariable("employeeId") final Integer employeeId) {
 		this.employeeService.deleteById(employeeId);
 		return new ResponseEntity<>(HttpStatus.OK);

@@ -1,4 +1,4 @@
-package com.selimhorri.pack.exceptions;
+package com.selimhorri.pack.exceptions.customs;
 
 public class EmployeeNotFoundException extends RuntimeException {
 	
