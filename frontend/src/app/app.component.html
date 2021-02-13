@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
      <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-           <a class="nav-link" >Add Employee <span class="sr-only">(current)</span></a>
+           <a href="#" class="nav-link" (click)="onOpenModal(null, 'add')" >Add Employee </a>
         </li>
      </ul>
      <form class="form-inline my-2 my-lg-0">
@@ -19,7 +19,7 @@
 <br><br>
 
 <!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">-->
-<div class="container">
+<div class="container" id = 'main-container' >
     <div class="row">
         <div *ngFor="let e of employees" class="col-md-6 col-xl-3">
             <div class="card m-b-30">
@@ -38,8 +38,8 @@
                 </ul>
                 <div class="card-body">
                     <div class="float-right btn-group btn-group-sm">
-                        <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-                        <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                        <a (click)="onOpenModal(null, 'update')" href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                        <a (click)="onOpenModal(null, 'delete')" href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
                     </div>
                     <ul class="social-links list-inline mb-0">
                         <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
@@ -52,5 +52,7 @@
 				
     </div>
 </div>
+
+
 
 
