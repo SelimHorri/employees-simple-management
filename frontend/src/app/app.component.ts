@@ -1,3 +1,4 @@
+
 import { EmployeeService } from './services/employees/employee.service';
 import { Component, OnInit } from '@angular/core';
 import { Employee } from './models/dto/employee';
@@ -33,8 +34,6 @@ export class AppComponent implements OnInit {
   
   public onOpenModal(employee: Employee, mode: string) : void {
     
-    const mainContainer = document.getElementById("main-container");
-    
     const button = document.createElement("button"); // type = 'submit' by default
     button.type = "button";
     button.style.display = "none";
@@ -49,6 +48,8 @@ export class AppComponent implements OnInit {
     if (mode === "delete") {
       button.setAttribute("data-target", "#deleteEmployeeModal");
     }
+    
+    const mainContainer = document.getElementById("main-container");
     
     mainContainer.appendChild(button);
     button.click();
