@@ -14,9 +14,11 @@ import com.selimhorri.pack.exceptions.payloads.ExceptionMsg;
 public class ApiExceptionHandler {
 	
 	@ExceptionHandler(
-		EmployeeNotFoundException.class
+		value = {
+			EmployeeNotFoundException.class
+		}
 	)
-	public ResponseEntity<Object> handleEmployeeNotFoundException(final EmployeeNotFoundException exception) {
+	public <T extends RuntimeException> ResponseEntity<ExceptionMsg> handleEmployeeNotFoundException(final T exception) {
 		
 		final HttpStatus badRequest = HttpStatus.BAD_REQUEST;
 		final ExceptionMsg exceptionMsg = new ExceptionMsg(exception.getMessage(), badRequest, LocalDateTime.now());
