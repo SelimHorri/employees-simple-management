@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
      <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-           <a href="#" class="nav-link" (click)="onOpenModal(null, 'add')" >Add Employee </a>
+           <a routerLink="" class="nav-link" (click)="onOpenModal(null, 'add')" >Add Employee </a>
         </li>
      </ul>
      <form class="form-inline my-2 my-lg-0">
@@ -38,8 +38,8 @@
                 </ul>
                 <div class="card-body">
                     <div class="float-right btn-group btn-group-sm">
-                        <a (click)="onOpenModal(null, 'update')" href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-                        <a (click)="onOpenModal(null, 'delete')" href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                        <a (click)="onOpenModal(employee, 'update')" routerLink="" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                        <a (click)="onOpenModal(employee, 'delete')" routerLink="" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
                     </div>
                     <ul class="social-links list-inline mb-0">
                         <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
@@ -49,7 +49,6 @@
                 </div>
             </div>
         </div>
-				
     </div>
 </div>
 
@@ -72,10 +71,14 @@
       </div>
       <div class="modal-body">
         
-        <form >
+        <form #saveForm="ngForm" (ngSubmit)="onSaveEmployee(saveForm)" >
           <div class="form-group">
-             <label for="name">Name</label>
-             <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Name" required>
+             <label for="name">Firstname</label>
+             <input type="text" ngModel name="firstName" class="form-control" id="name" placeholder="Firstname" required>
+          </div>
+          <div class="form-group">
+             <label for="name">Lastname</label>
+             <input type="text" ngModel name="lastName" class="form-control" id="name" placeholder="Lastname" required>
           </div>
           <div class="form-group">
              <label for="email">Email Address</label>
@@ -95,7 +98,7 @@
           </div>
           <div class="modal-footer">
              <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-             <button type="submit" class="btn btn-primary" >Save</button>
+             <button [disabled]="saveForm.invalid" type="submit" class="btn btn-primary" >Save</button>
           </div>
         </form>
         
@@ -118,33 +121,36 @@
       </div>
       <div class="modal-body">
         
-        <form  >
+        <form #updateForm="ngForm" >
+          <input type="hidden" ngModel="{{employee?.employeeId}}" name="employeeId" class="form-control" id="employeeId">
+          <input type="hidden" ngModel="{{employee?.employeeCode}}" name="employeeCode" class="form-control" id="employeeCode">
           <div class="form-group">
-            <input type="hidden" ngModel name="employeeId" class="form-control" id="employeeId">
+             <label for="name">Firstname</label>
+             <input type="text" ngModel="{{employee?.firstName}}" name="firstName" class="form-control" id="name" placeholder="Firstname" required>
           </div>
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Name" required>
+             <label for="name">Lastname</label>
+             <input type="text" ngModel="{{employee?.lastName}}" name="lastName" class="form-control" id="name" placeholder="Lastname" required>
           </div>
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
+            <input type="email" ngModel="{{employee?.email}}" name="email" class="form-control" id="email" placeholder="Email" required>
           </div>
           <div class="form-group">
             <label for="phone">Job title</label>
-            <input type="text" ngModel name="jobTitle" class="form-control" id="jobTile" placeholder="Job title" required>
+            <input type="text" ngModel="{{employee?.jobTitle}}" name="jobTitle" class="form-control" id="jobTile" placeholder="Job title" required>
           </div>
           <div class="form-group">
             <label for="phone">Phone</label>
-            <input type="text" ngModel name="phone" class="form-control" id="phone" placeholder="Phone" required>
+            <input type="text" ngModel="{{employee?.phone}}" name="phone" class="form-control" id="phone" placeholder="Phone" required>
           </div>
           <div class="form-group">
             <label for="phone">Image URL</label>
-            <input type="text" ngModel name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL" required>
+            <input type="text" ngModel="{{employee?.imageUrl}}" name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL" required>
           </div>
           <div class="modal-footer">
              <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-             <button type="submit" class="btn btn-primary" >Update</button>
+             <button (click)="onUpdateEmployee(updateForm.value)" [disabled]="updateForm.invalid" type="submit" class="btn btn-primary" >Update</button>
           </div>
         </form>
         

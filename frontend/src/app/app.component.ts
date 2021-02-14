@@ -3,6 +3,7 @@ import { EmployeeService } from './services/employees/employee.service';
 import { Component, OnInit } from '@angular/core';
 import { Employee } from './models/dto/employee';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class AppComponent implements OnInit {
   
   public employees: Employee[];
+  public employee: Employee;
   
   constructor(private employeeService: EmployeeService) {
     
@@ -43,6 +45,7 @@ export class AppComponent implements OnInit {
       button.setAttribute("data-target", "#addEmployeeModal");
     }
     if (mode === "update") {
+      this.employee = employee;
       button.setAttribute("data-target", "#updateEmployeeModal");
     }
     if (mode === "delete") {
@@ -53,7 +56,38 @@ export class AppComponent implements OnInit {
     
     mainContainer.appendChild(button);
     button.click();
+  }
+  
+  public onSaveEmployee(saveForm: NgForm) : void {
     
+    this.employeeService.save(saveForm.value).subscribe(
+      (response: Employee) => {
+        console.log(response);
+        this.findAll();
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message);
+        alert(error.message);
+      }
+    );
+    
+    document.getElementById("add-employee-form").click();
+  }
+  
+  public onUpdateEmployee(employee: Employee) : void {
+    
+    this.employeeService.update(employee).subscribe(
+      (response: Employee) => {
+        console.log(response);
+        this.findAll();
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message);
+        alert(error.message);
+      }
+    );
+    
+    document.getElementById("add-employee-form").click();
   }
   
   
