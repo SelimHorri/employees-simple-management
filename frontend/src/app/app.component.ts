@@ -72,6 +72,7 @@ export class AppComponent implements OnInit {
     );
     
     document.getElementById("add-employee-form").click();
+    saveForm.reset();
   }
   
   public onUpdateEmployee(employee: Employee) : void {
@@ -87,7 +88,7 @@ export class AppComponent implements OnInit {
       }
     );
     
-    document.getElementById("add-employee-form").click();
+    document.getElementById("update-employee-form").click();
   }
   
   
