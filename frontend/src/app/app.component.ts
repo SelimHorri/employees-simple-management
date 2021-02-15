@@ -110,6 +110,30 @@ export class AppComponent implements OnInit {
     document.getElementById("delete-employee-form").click();
   }
   
+  public searchBy(key: string) : void {
+    
+    const res: Employee[] = [];
+    this.employees.forEach((e) => {
+      
+      if (e.firstName.toLowerCase().indexOf(key.toLowerCase()) !== -1 
+        || e.lastName.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        || e.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        || e.phone.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        || e.jobTitle.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      ) {
+        res.push(e);
+      } 
+      
+    });
+    
+    this.employees = res;
+    
+    if (res.length === 0 || !key) {
+      this.findAll();
+    }
+    
+  }
+  
   
   
 }
