@@ -20,7 +20,7 @@ export class EmployeeService {
   }
   
   public findById(employeeId: number): Observable<Employee> {
-    return this.http.get<Employee>(this.apiServerUrl + "/employees" + employeeId);
+    return this.http.get<Employee>(this.apiServerUrl + "/employees/" + employeeId);
   }
   
   public save(employee: Employee): Observable<Employee> {
@@ -32,7 +32,7 @@ export class EmployeeService {
   }
   
   public deleteById(employeeId: number): Observable<void> {
-    return this.http.delete<void>(this.apiServerUrl + "/employees" + employeeId);
+    return this.http.delete<void>(this.apiServerUrl + "/employees/" + employeeId);
   }
   
   

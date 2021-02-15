@@ -27,8 +27,10 @@ export class AppComponent implements OnInit {
     this.employeeService.findAll().subscribe(
       (response: Employee[]) => {
         this.employees = response;
+        console.log(this.employees);
       },
       (error: HttpErrorResponse) => {
+        console.log(error.message);
         alert(error.message);
       }
     );
@@ -49,6 +51,7 @@ export class AppComponent implements OnInit {
       button.setAttribute("data-target", "#updateEmployeeModal");
     }
     if (mode === "delete") {
+      this.employee = employee;
       button.setAttribute("data-target", "#deleteEmployeeModal");
     }
     
@@ -89,6 +92,22 @@ export class AppComponent implements OnInit {
     );
     
     document.getElementById("update-employee-form").click();
+  }
+  
+  public onDeleteEmployee(employee: Employee) : void {
+    
+    this.employeeService.deleteById(employee.employeeId).subscribe(
+      (response: void) => {
+        console.log("Employee deleted successfully");
+        this.findAll();
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message);
+        alert(error.message);
+      }
+    );
+    
+    document.getElementById("delete-employee-form").click();
   }
   
   
