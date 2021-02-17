@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT -Dspring.datasource.username=$DATASOURCE_USERNAME -Dspring.datasource.password=$DATASOURCE_PASSWORD -Dspring.datasource.url=$DATASOURCE_URL -jar backend/target/employees-simple-management.jar
