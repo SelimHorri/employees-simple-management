@@ -1,6 +1,8 @@
 version: '3'
 services:
   employee-management-container:
-    image: employee-simple-management:3.0
+    image: selimhorri/employee-simple-management:3.0
     ports:
       - 8080:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
